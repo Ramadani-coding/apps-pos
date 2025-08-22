@@ -1,3 +1,9 @@
+import UserManagement from "./_components/user";
+
+export const metadata = {
+  title: "Rama Cafe | User Management",
+};
+
 export default function UserManagementPage() {
-  return <div>User Management</div>;
+  return <UserManagement />;
 }
