@@ -9,9 +9,10 @@ import { HEADER_TABLE_USER } from "@/constans/user-constan";
 import useDataTable from "@/hooks/use-datatable";
 import { createClient } from "@/lib/supabase/client";
 import { useQuery } from "@tanstack/react-query";
-import { Delete, Pencil, Trash2 } from "lucide-react";
-import { use, useMemo } from "react";
+import { Pencil, Trash2 } from "lucide-react";
+import { useMemo } from "react";
 import { toast } from "sonner";
+import DialogCreateUser from "./dialog-create-user";
 
 export default function UserManagement() {
   const supabase = createClient();
@@ -23,7 +24,11 @@ export default function UserManagement() {
     headleChangeLimit,
     headleChangeSearch,
   } = useDataTable();
-  const { data: users, isLoading } = useQuery({
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users", currentPage, currentLimit, currentSearch],
     queryFn: async () => {
       const result = await supabase
@@ -94,6 +99,7 @@ export default function UserManagement() {
             <DialogTrigger asChild>
               <Button variant="outline">Create</Button>
             </DialogTrigger>
+            <DialogCreateUser refetch={refetch} />
           </Dialog>
         </div>
       </div>

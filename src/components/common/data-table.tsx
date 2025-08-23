@@ -8,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { is } from "zod/v4/locales";
 import PaginationDataTable from "./pagination-datatable";
 import { Label } from "../ui/label";
 import {
@@ -21,7 +20,6 @@ import {
   SelectValue,
 } from "../ui/select";
 import { LIMIT_LIST } from "@/constans/data-table-constan";
-import { number } from "zod";
 
 export default function DataTable({
   header,

@@ -22,6 +22,7 @@ export default function PaginationDataTable({
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
+            key="prev-current"
             onClick={() => {
               if (currentPage > 1) {
                 onChangePage(currentPage - 1);
@@ -39,7 +40,7 @@ export default function PaginationDataTable({
             Math.abs(page - currentPage) <= 1
           ) {
             return (
-              <PaginationItem>
+              <PaginationItem key={`page-${page}`}>
                 <PaginationLink
                   onClick={() => {
                     if (page !== currentPage) onChangePage(page);
@@ -63,7 +64,7 @@ export default function PaginationDataTable({
           }
         })}
 
-        <PaginationItem>
+        <PaginationItem key="next">
           <PaginationNext
             onClick={() => {
               if (currentPage < totalPages) {
