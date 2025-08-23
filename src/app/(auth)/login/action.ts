@@ -16,27 +16,24 @@ export async function login(
     return INITIAL_STATE_LOGIN_FORM;
   }
 
-  const validatedFilds = LoginSchema.safeParse({
+  const validatedFields = LoginSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
 
-  if (!validatedFilds.success) {
+  if (!validatedFields.success) {
     return {
       status: "error",
-      errors: {
-        ...validatedFilds.error.flatten().fieldErrors,
-        _form: [],
-      },
+      errors: validatedFields.error.flatten().fieldErrors,
     };
   }
 
-  const supabase = await createClient({});
+  const supabase = await createClient();
 
   const {
     error,
     data: { user },
-  } = await supabase.auth.signInWithPassword(validatedFilds.data);
+  } = await supabase.auth.signInWithPassword(validatedFields.data);
 
   if (error) {
     return {
@@ -55,8 +52,8 @@ export async function login(
     .single();
 
   if (profile) {
-    const cookieStore = await cookies();
-    cookieStore.set("user_profile", JSON.stringify(profile), {
+    const cookiesStore = await cookies();
+    cookiesStore.set("user_profile", JSON.stringify(profile), {
       httpOnly: true,
       path: "/",
       sameSite: "lax",

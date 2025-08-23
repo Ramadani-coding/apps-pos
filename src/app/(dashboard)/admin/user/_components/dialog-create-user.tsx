@@ -43,12 +43,20 @@ export default function DialogCreateUser({ refetch }: { refetch: () => void }) {
   const onSubmit = form.handleSubmit((data) => {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, key === "avatar_url" ? preview!.file ?? "" : value);
+      const val = key === "avatar_url" ? preview!.file ?? "" : value;
+      formData.append(key, val);
+      console.log("Append:", key, val);
     });
+
+    for (const [key, val] of formData.entries()) {
+      console.log("FormData:", key, val);
+    }
 
     startTransition(() => {
       createUserAction(formData);
     });
+
+    console.log(preview!.file);
   });
 
   useEffect(() => {

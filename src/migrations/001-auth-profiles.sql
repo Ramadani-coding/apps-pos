@@ -20,7 +20,7 @@ security definer set search_path = ''
 as $$
 begin
   insert into public.profiles (id, name, role, avatar_url)
-  values (new.id, new.raw_user_meta_data ->> 'name', new.raw_user_meta_data ->> 'role', new.raw_user_meta_data ->> 'avatr_url');
+  values (new.id, new.raw_user_meta_data ->> 'name', new.raw_user_meta_data ->> 'role', new.raw_user_meta_data ->> 'avatar_url');
   return new;
 end;
 $$;
