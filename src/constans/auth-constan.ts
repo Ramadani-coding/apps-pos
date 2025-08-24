@@ -60,3 +60,14 @@ export const ROLE_LIST = [
     label: "Kasir",
   },
 ];
+
+export const AVAILABILITY_LIST = [
+  {
+    value: "true",
+    label: "Tersedia",
+  },
+  {
+    value: "false",
+    label: "Tidak Tersedia",
+  },
+];

@@ -15,6 +15,8 @@ import { Menu } from "@/validations/menu-validation";
 import Image from "next/image";
 import { cn, convertIDR } from "@/lib/utils";
 import { HEADER_TABLE_MENU } from "@/constans/menu-constan";
+import DialogCreateMenu from "./dialog-create-menu";
+import DialogUpdateMenu from "./dialog-update-menu";
 
 export default function MenuManagement() {
   const supabase = createClient();
@@ -152,6 +154,7 @@ export default function MenuManagement() {
             <DialogTrigger asChild>
               <Button variant="outline">Create</Button>
             </DialogTrigger>
+            <DialogCreateMenu refetch={refetch} />
           </Dialog>
         </div>
       </div>
@@ -164,6 +167,12 @@ export default function MenuManagement() {
         currentLimit={currentLimit}
         onChangePage={headleChangePage}
         onChangeLimit={headleChangeLimit}
+      />
+      <DialogUpdateMenu
+        open={selectedAction !== null && selectedAction.type === "update"}
+        refetch={refetch}
+        currentData={selectedAction?.data}
+        heandleChangeAction={handleChangeAction}
       />
     </div>
   );
