@@ -43,7 +43,7 @@ export default function MenuManagement() {
 
       if (currentSearch) {
         query.or(
-          `name.ilike.%${currentSearch}%, capacity.ilike.%${currentSearch}%,  status.ilike.%${currentSearch}%`
+          `name.ilike.%${currentSearch}%, description.ilike.%${currentSearch}%, status.ilike.%${currentSearch}%`
         );
       }
 
@@ -134,7 +134,7 @@ export default function MenuManagement() {
         <h1 className="text-2xl font-bold">Table Management</h1>
         <div className="flex gap-2">
           <Input
-            placeholder="Cari by name, capacity & status"
+            placeholder="Cari..."
             onChange={(e) => headleChangeSearch(e.target.value)}
           />
           <Dialog>
