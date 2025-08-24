@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Table } from "@/validations/table-validation";
 import { HEADER_TABLE_TABLE } from "@/constans/table-constan";
+import DialogCreateTable from "./dialog-create-table";
 
 export default function MenuManagement() {
   const supabase = createClient();
@@ -138,6 +139,7 @@ export default function MenuManagement() {
             <DialogTrigger asChild>
               <Button variant="outline">Create</Button>
             </DialogTrigger>
+            <DialogCreateTable refetch={refetch} />
           </Dialog>
         </div>
       </div>
