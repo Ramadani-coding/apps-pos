@@ -16,6 +16,7 @@ import { Table } from "@/validations/table-validation";
 import { HEADER_TABLE_TABLE } from "@/constans/table-constan";
 import DialogCreateTable from "./dialog-create-table";
 import DialogUpdateTable from "./dialog-update-table";
+import DialogDeleteTable from "./dialog-delete-table";
 
 export default function MenuManagement() {
   const supabase = createClient();
@@ -159,6 +160,12 @@ export default function MenuManagement() {
         refetch={refetch}
         currentData={selectedAction?.data}
         heandleChangeAction={handleChangeAction}
+      />
+      <DialogDeleteTable
+        open={selectedAction !== null && selectedAction.type === "delete"}
+        refetch={refetch}
+        currentData={selectedAction?.data}
+        handleChangeAction={handleChangeAction}
       />
     </div>
   );
