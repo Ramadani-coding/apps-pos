@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { Table } from "@/validations/table-validation";
 import { HEADER_TABLE_TABLE } from "@/constans/table-constan";
 import DialogCreateTable from "./dialog-create-table";
+import DialogUpdateTable from "./dialog-update-table";
 
 export default function MenuManagement() {
   const supabase = createClient();
@@ -152,6 +153,12 @@ export default function MenuManagement() {
         currentLimit={currentLimit}
         onChangePage={headleChangePage}
         onChangeLimit={headleChangeLimit}
+      />
+      <DialogUpdateTable
+        open={selectedAction !== null && selectedAction.type === "update"}
+        refetch={refetch}
+        currentData={selectedAction?.data}
+        heandleChangeAction={handleChangeAction}
       />
     </div>
   );
